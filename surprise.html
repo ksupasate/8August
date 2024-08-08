@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.8</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;700&family=Mitr:wght@500&display=swap');
+        
+        :root {
+            --primary-color: #FF3366;
+            --secondary-color: #6C5CE7;
+            --accent-color: #00CECE;
+            --background-color: #F0F3F8;
+            --text-color: #2C3E50;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        h1, .text-animate {
+            font-family: 'Mitr', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .text-animate.show {
+            opacity: 1;
+        }
+
+        .button-heart {
+            display: inline-block;
+            padding: 15px;
+            margin: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.8em;
+            line-height: 1em;
+            width: 60px;
+            height: 60px;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
+        }
+
+        .button-heart:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 20px rgba(255, 51, 102, 0.4);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 35px;
+            margin: 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .button#yesButton {
+            background-color: var(--accent-color);
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            animation: confetti 5s ease-in-out infinite;
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(1000px) rotate(720deg); opacity: 0; }
+        }
+
+        .gallery {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 150px; /* Set a fixed height for uniform size */
+            object-fit: cover; /* Ensure the images cover the entire area */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <h1 id="animatedText" class="text-animate">Hello👋🏻</h1>
+        <button id="changeTextButton" class="button-heart">❤</button>
+        <div class="gallery" id="gallery">
+            <img src="images/image1.jpg" alt="Image 1">
+            <img src="images/image2.jpg" alt="Image 2">
+            <img src="images/image3.jpg" alt="Image 3">
+            <img src="images/image4.jpg" alt="Image 4">
+            <img src="images/image5.jpg" alt="Image 5">
+            <img src="images/image6.jpg" alt="Image 6">
+            <img src="images/image7.jpg" alt="Image 7">
+            <img src="images/image8.jpg" alt="Image 8">
+            <img src="images/image9.jpg" alt="Image 9">
+            <img src="images/image10.png" alt="Image 10">
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="romantic-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const changeTextButton = document.getElementById('changeTextButton');
+        const animatedText = document.getElementById('animatedText');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const gallery = document.getElementById('gallery');
+
+        function getDaysSince(dateString) {
+            const now = new Date();
+            const past = new Date(dateString);
+            const diffTime = Math.abs(now - past);
+            return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        }
+
+        const firstMeetDate = "2024-04-04";
+        const firstTalkDate = "2024-04-27";
+        const firstDateDate = "2024-06-08";
+
+        const textSequence = [
+            `Hello👋🏻, my love.`,
+            `We first met on April 4th. That was ${getDaysSince(firstMeetDate)} days ago, and my heart still races 💖`,
+            `🎙️ Our first conversation was on April 27th, ${getDaysSince(firstTalkDate)} days ago. It was the start of something wonderful.`,
+            `🪐 Our first date was on June 8th, ${getDaysSince(firstDateDate)} days ago. A day I'll never forget.`,
+            `Since then, every moment with you has been a treasure.`,
+            `Your smile lights up my life like no other 😄`,
+            `You are the reason my heart beats with joy ❤️`,
+            `Every day, I fall more in love with you 💕`,
+            `I have a special question for you...`
+        ];
+        let currentTextIndex = 0;
+
+        changeTextButton.addEventListener('click', function() {
+            if (currentTextIndex < textSequence.length - 1) {
+                animatedText.classList.remove('show');
+                setTimeout(() => {
+                    currentTextIndex++;
+                    animatedText.innerText = textSequence[currentTextIndex];
+                    animatedText.classList.add('show');
+                }, 500);
+            } else {
+                backgroundMusic.play();
+                changeTextButton.style.display = 'none';
+                animatedText.innerHTML = "<h3>Will you be my life partner? 💐</h3><button id='yesButton' class='button'>Yes</button><button id='noButton' class='button'>No</button>";
+                
+                const yesButton = document.getElementById('yesButton');
+                const noButton = document.getElementById('noButton');
+                
+                yesButton.addEventListener('click', function() {
+                    animatedText.innerHTML = "🎉 I'm the happiest in <br>the world! 🎉</br> <p>Let's start this new chapter of life together.</p>";
+                    createConfetti();
+                    gallery.style.display = 'grid';
+                });
+                
+                noButton.addEventListener('mouseover', function() {
+                    const maxX = window.innerWidth - this.offsetWidth;
+                    const maxY = window.innerHeight - this.offsetHeight;
+                    this.style.position = 'fixed';
+                    this.style.left = Math.random() * maxX + 'px';
+                    this.style.top = Math.random() * maxY + 'px';
+                });
+            }
+        });
+
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ['#FF3366', '#6C5CE7', '#00CECE', '#FFA502', '#FF5E3A'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        setTimeout(() => {
+            animatedText.classList.add('show');
+        }, 500);
+    </script>
+</body>
+</html>
